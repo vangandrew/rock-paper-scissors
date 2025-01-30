@@ -4,15 +4,15 @@ function getComputerChoice() {
     let computerChoice = null;
 
     if (result < 0.34) {
-        computerChoice = "Rock";
+        computerChoice = "rock";
     }
     else if (result < 0.67) {
-        computerChoice = "Paper";
+        computerChoice = "paper";
     }
     else if (result > 0.67) {
-        computerChoice = "Scissors";
+        computerChoice = "scissors";
     }
-
+    computerChoice = computerChoice.trim().toLowerCase();
     return computerChoice
 };
 
@@ -27,23 +27,23 @@ function getHumanChoice() {
     }
 
 
-const humanChoice = console.log(`You chose: ${getHumanChoice()}`);
-const computerChoice = console.log(`The computer chose: ${getComputerChoice()}`);
+const humanChoice = getHumanChoice();
+const computerChoice = getComputerChoice();
 
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(computerChoice, playerChoice) {
-    if (playerChoice === computerChoice) {
-        console.log("Tie!!");
-    }
-    else if (
+    if (
         (playerChoice == "rock" && computerChoice == "scissors") ||
         (playerChoice == "paper" && computerChoice == "rock") ||
         (playerChoice == "scissors" && computerChoice == "paper")
     ) {
         console.log("Human won!");
         humanScore++;
+    }
+    else if (playerChoice === computerChoice) {
+        console.log("Tie!");
     }
     else {
         console.log("Computer won!");
@@ -52,4 +52,6 @@ function playRound(computerChoice, playerChoice) {
 }
 
 playRound(computerChoice, humanChoice);
+console.log(`You chose: ${humanChoice}`);
+console.log(`The computer chose: ${computerChoice}`);
 console.log(`Human: ${humanScore} vs Computer: ${computerScore}`);
