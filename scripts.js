@@ -30,28 +30,41 @@ function getHumanChoice() {
 const humanChoice = getHumanChoice();
 const computerChoice = getComputerChoice();
 
-let humanScore = 0;
-let computerScore = 0;
 
 function playRound(computerChoice, playerChoice) {
+    let result = null;
     if (
         (playerChoice == "rock" && computerChoice == "scissors") ||
         (playerChoice == "paper" && computerChoice == "rock") ||
         (playerChoice == "scissors" && computerChoice == "paper")
     ) {
-        console.log("Human won!");
+        result = "Human won!"
+        console.log(result);
         humanScore++;
     }
     else if (playerChoice === computerChoice) {
-        console.log("Tie!");
+        result = "Tie!"
+        console.log(result);
     }
     else {
-        console.log("Computer won!");
+        result = "Computer won!"
+        console.log(result);
         computerScore++;
     }
+    return result
 }
 
 playRound(computerChoice, humanChoice);
 console.log(`You chose: ${humanChoice}`);
 console.log(`The computer chose: ${computerChoice}`);
 console.log(`Human: ${humanScore} vs Computer: ${computerScore}`);
+
+function playGame(playRound, roundsToPlay=5) {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < roundsToPlay; i++) {
+        const result = playRound;
+        console.log(result);
+    }
+}
