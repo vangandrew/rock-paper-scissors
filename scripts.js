@@ -27,9 +27,8 @@ function getHumanChoice() {
     }
 
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
-
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(computerChoice, playerChoice) {
     let result = null;
@@ -39,32 +38,30 @@ function playRound(computerChoice, playerChoice) {
         (playerChoice == "scissors" && computerChoice == "paper")
     ) {
         result = "Human won!"
-        console.log(result);
         humanScore++;
     }
     else if (playerChoice === computerChoice) {
         result = "Tie!"
-        console.log(result);
     }
     else {
         result = "Computer won!"
-        console.log(result);
         computerScore++;
     }
     return result
 }
 
-playRound(computerChoice, humanChoice);
-console.log(`You chose: ${humanChoice}`);
-console.log(`The computer chose: ${computerChoice}`);
-console.log(`Human: ${humanScore} vs Computer: ${computerScore}`);
-
-function playGame(playRound, roundsToPlay=5) {
-    let humanScore = 0;
-    let computerScore = 0;
+function playGame(roundsToPlay=5) {
 
     for (let i = 0; i < roundsToPlay; i++) {
-        const result = playRound;
+        let humanChoice = getHumanChoice();
+        let computerChoice = getComputerChoice();
+        console.log(`You chose: ${humanChoice}`);
+        console.log(`The computer chose: ${computerChoice}`);
+        const result = playRound(computerChoice, humanChoice);
         console.log(result);
     }
+
 }
+
+playGame(roundsToPlay=5);
+console.log(`Final Result: Human: ${humanScore} vs Computer: ${computerScore}`);
