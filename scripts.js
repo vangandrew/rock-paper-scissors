@@ -1,3 +1,11 @@
+const choices = document.querySelector(".choices");
+choices.addEventListener("click", (e) => {
+    if (e.target.tagName === "LI") {
+        getHumanChoice()
+    } 
+})
+
+
 function getComputerChoice() {
     /* Rock = Math.random(0 - 0.33), Paper = Math.random(0.34 - 0.66), Scissors = Math.random(0.67 - 1)  */
     let result = Math.random();
@@ -63,5 +71,5 @@ function playGame(roundsToPlay=5) {
 
 }
 
-playGame(roundsToPlay=5);
+// playGame(roundsToPlay=5);
 console.log(`Final Result: Human: ${humanScore} vs Computer: ${computerScore}`);
