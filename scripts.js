@@ -1,10 +1,4 @@
 const choices = document.querySelector(".choices");
-choices.addEventListener("click", (e) => {
-    if (e.target.tagName === "LI") {
-        getHumanChoice()
-    } 
-})
-
 
 function getComputerChoice() {
     /* Rock = Math.random(0 - 0.33), Paper = Math.random(0.34 - 0.66), Scissors = Math.random(0.67 - 1)  */
@@ -26,12 +20,18 @@ function getComputerChoice() {
 
 
 function getHumanChoice() {
-    const choices = ["rock", "paper", "scissors"];
-    let result = prompt("Please enter your move: ");
-    while (!choices.includes(result)) {
-        result = prompt("Not a valid move... Please enter a valid move: ").trim().toLowerCase()
+    const options = ["rock", "paper", "scissors"];
+    choices.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+            let result = e.target.textContent.trim().toLowerCase();
+            if (result in options) {
+                return result;
+            }
+            else {
+                return "ERROR"
+            }
         }
-    return result
+    });
     }
 
 
@@ -71,5 +71,5 @@ function playGame(roundsToPlay=5) {
 
 }
 
-// playGame(roundsToPlay=5);
+playGame(roundsToPlay=5);
 console.log(`Final Result: Human: ${humanScore} vs Computer: ${computerScore}`);
