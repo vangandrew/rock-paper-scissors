@@ -19,22 +19,6 @@ function getComputerChoice() {
 };
 
 
-function getHumanChoice() {
-    const options = ["rock", "paper", "scissors"];
-    choices.addEventListener("click", (e) => {
-        if (e.target.tagName === "LI") {
-            let result = e.target.textContent.trim().toLowerCase();
-            if (result in options) {
-                return result;
-            }
-            else {
-                return "ERROR"
-            }
-        }
-    });
-    }
-
-
 let humanScore = 0;
 let computerScore = 0;
 
@@ -58,18 +42,30 @@ function playRound(computerChoice, playerChoice) {
     return result
 }
 
-function playGame(roundsToPlay=5) {
+function playGame() {
+    options = ['rock', 'paper', 'scissors'];
+    let roundsPlayed = 0;
+    let roundsToPlay = 5;
 
-    for (let i = 0; i < roundsToPlay; i++) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        console.log(`You chose: ${humanChoice}`);
-        console.log(`The computer chose: ${computerChoice}`);
-        const result = playRound(computerChoice, humanChoice);
-        console.log(result);
-    }
+    choices.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+            let humanChoice = e.target.textContent.trim().toLowerCase();
+            let computerChoice = getComputerChoice();
+            if (options.includes(humanChoice)) {
+                console.log(`You chose: ${humanChoice}`);
+                console.log(`Computer chose: ${computerChoice}`);
+                playRound(computerChoice, humanChoice)
+                roundsPlayed++
+            }
+            else {
+                console.log("Error occurred when selecting a choice, please try again...")
+            }
 
+        }
+            if (roundsPlayed === roundsToPlay) {
+                console.log(`Final Result: Human ${humanScore} vs Computer: ${computerScore}`)
+            }
+    })
 }
 
-playGame(roundsToPlay=5);
-console.log(`Final Result: Human: ${humanScore} vs Computer: ${computerScore}`);
+playGame()
