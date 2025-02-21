@@ -1,4 +1,5 @@
 const choices = document.querySelector(".choices");
+const computerChoice = document.getElementById("computer-choice")
 
 function getComputerChoice() {
     /* Rock = Math.random(0 - 0.33), Paper = Math.random(0.34 - 0.66), Scissors = Math.random(0.67 - 1)  */
