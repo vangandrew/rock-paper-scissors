@@ -4,6 +4,8 @@ const computerChoice = document.getElementById("computer-choice");
 const playerShoutOut = document.getElementById("player-shoutout");
 const computerShoutOut = document.getElementById("computer-shoutout");
 const finalShoutOut = document.getElementById("final-shoutout");
+const restartShoutOut = document.getElementById("restart-shoutout");
+const restartGameOptions = document.getElementById("restart-game-options");
 
 function getComputerChoice() {
     /* Rock = Math.random(0 - 0.33), Paper = Math.random(0.34 - 0.66), Scissors = Math.random(0.67 - 1)  */
@@ -51,6 +53,7 @@ function playGame() {
     options = ['rock', 'paper', 'scissors'];
     let roundsPlayed = 0;
     let roundsToPlay = 5;
+    restartGameOptions.style.display = "none";
 
     choices.addEventListener("click", (e) => {
         if (e.target.tagName === "LI") {
@@ -70,10 +73,30 @@ function playGame() {
 
         }
             if (roundsPlayed === roundsToPlay) {
-                console.log(`Final Result: Human ${humanScore} vs Computer: ${computerScore}`)
-                finalShoutOut.textContent = `Final Result: Human ${humanScore} vs Computer: ${computerScore}`
+                console.log(`Final Result: Human ${humanScore} vs Computer: ${computerScore}`);
+                finalShoutOut.textContent = `Final Result: Human ${humanScore} vs Computer: ${computerScore}`;
+                restartShoutOut.textContent = "Restart Game?"
+                restartGameOptions.style.display = "block";
             }
-    })
+    });
+
+    restartGameOptions.addEventListener("click", (e) => {
+        if (e.target.tagName === "BUTTON") {
+            if (e.target.textContent.trim().toLowerCase() === "yes") {
+                playGame();
+                restartGameOptions.display = "none";
+                humanScore = 0;
+                computerScore = 0;
+                playerShoutOut.textContent = '';
+                computerShoutOut.textContent = '';
+                restartShoutOut.textContent = '';
+                finalShoutOut.textContent = '';
+            }
+            else if (e.target.textContent.trim().toLowerCase() === "no") {
+                restartShoutOut.textContent = "Thank you for playing!";
+            }
+        }
+    });
 }
 
 playGame()
