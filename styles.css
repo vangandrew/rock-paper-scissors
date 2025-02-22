@@ -14,6 +14,7 @@ body {
 
 .main {
     background-color: #16285f;
+    position: relative;
     display: flex;
     flex: 1;
     justify-content: space-evenly;
@@ -66,5 +67,13 @@ body {
     color: #fff;
 }
 .computer-side-desc h3 {
+    color: #fff;
+}
+
+.game-title-wrapper {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    text-align: center;
     color: #fff;
 }

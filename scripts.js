@@ -1,5 +1,9 @@
 const choices = document.querySelector(".choices");
-const computerChoice = document.getElementById("computer-choice")
+const computerChoice = document.getElementById("computer-choice");
+
+const playerShoutOut = document.getElementById("player-shoutout");
+const computerShoutOut = document.getElementById("computer-shoutout");
+const finalShoutOut = document.getElementById("final-shoutout");
 
 function getComputerChoice() {
     /* Rock = Math.random(0 - 0.33), Paper = Math.random(0.34 - 0.66), Scissors = Math.random(0.67 - 1)  */
@@ -54,7 +58,9 @@ function playGame() {
             let computerChoice = getComputerChoice();
             if (options.includes(humanChoice)) {
                 console.log(`You chose: ${humanChoice}`);
+                playerShoutOut.textContent = `You chose: ${humanChoice}`;
                 console.log(`Computer chose: ${computerChoice}`);
+                computerShoutOut.textContent = `Computer chose: ${computerChoice}`;
                 playRound(computerChoice, humanChoice)
                 roundsPlayed++
             }
@@ -65,6 +71,7 @@ function playGame() {
         }
             if (roundsPlayed === roundsToPlay) {
                 console.log(`Final Result: Human ${humanScore} vs Computer: ${computerScore}`)
+                finalShoutOut.textContent = `Final Result: Human ${humanScore} vs Computer: ${computerScore}`
             }
     })
 }
