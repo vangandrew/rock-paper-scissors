@@ -83,20 +83,28 @@ function playGame() {
     restartGameOptions.addEventListener("click", (e) => {
         if (e.target.tagName === "BUTTON") {
             if (e.target.textContent.trim().toLowerCase() === "yes") {
-                playGame();
-                restartGameOptions.display = "none";
-                humanScore = 0;
-                computerScore = 0;
-                playerShoutOut.textContent = '';
-                computerShoutOut.textContent = '';
-                restartShoutOut.textContent = '';
-                finalShoutOut.textContent = '';
+                restartGame();
             }
             else if (e.target.textContent.trim().toLowerCase() === "no") {
                 restartShoutOut.textContent = "Thank you for playing!";
             }
         }
     });
+}
+
+function restartGame() {
+    humanScore = 0;
+    computerScore = 0;
+
+
+    playerShoutOut.textContent = '';
+    computerShoutOut.textContent = '';
+    finalShoutOut.textContent = '';
+    restartShoutOut.textContent = '';
+    restartGameOptions.display = "none";
+
+    playGame()
+
 }
 
 playGame()
